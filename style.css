@@ -1,0 +1,133 @@
+body {
+  margin: 0;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: pink;
+  font-family: Arial, sans-serif;
+  text-align: center;
+  overflow: hidden;
+}
+
+.container {
+  position: relative;
+  z-index: 2;
+  max-width: 90%;
+  padding: 10px;
+}
+
+h1 {
+  font-size: clamp(1.2rem, 5vw, 2rem); /* responsive title */
+  margin-bottom: 20px;
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+button {
+  --s: 1;
+  transform: scale(var(--s));
+  width: clamp(90px, 20vw, 140px);
+  height: clamp(40px, 8vw, 60px);
+  font-size: clamp(14px, 4vw, 20px);
+  font-weight: bold;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+#yesBtn {
+  background: white;
+  color: hotpink;
+  border: 2px solid hotpink;
+}
+
+#noBtn {
+  background: white;
+  color: blue;
+  border: 2px solid blue;
+}
+
+#overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  visibility: hidden;
+  opacity: 0;
+  transition: 0.4s;
+  z-index: 3;
+  padding: 10px;
+}
+
+#overlay.show {
+  visibility: visible;
+  opacity: 1;
+}
+
+.message {
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  text-align: center;
+  max-width: 90%;
+  width: 400px;
+}
+
+.message img {
+  width: clamp(100px, 40vw, 180px);
+  border-radius: 10px;
+  margin-bottom: 15px;
+}
+
+/* Floating hearts */
+.hearts {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.heart {
+  position: absolute;
+  color: red;
+  font-size: 20px;
+  animation: float 6s linear infinite;
+  opacity: 0.8;
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(100vh) scale(0.5);
+    opacity: 0;
+  }
+  30% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-10vh) scale(1.2);
+    opacity: 0;
+  }
+}
+
+/* RESPONSIVE FIXES */
+@media (max-width: 600px) {
+  .buttons {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  h1 {
+    margin-bottom: 15px;
+  }
+}
